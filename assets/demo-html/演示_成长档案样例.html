@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成长档案样例（演示）· 视频内容创作教练</title>
+<style>
+:root{
+  --red:#4A5D6A; --red-deep:#33424D; --gold:#A99B7E; --gold-deep:#7A6E57;
+  --paper:#FAF6EE; --ink:#2B2620; --gray:#6B5F52; --line:#E4D8BE; --white:#fff;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:"Microsoft YaHei","PingFang SC","Noto Sans SC",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:32px 24px 64px}
+header{border-bottom:2px solid var(--red);padding-bottom:16px;margin-bottom:22px}
+.brand{font-size:12.5px;letter-spacing:.18em;color:var(--gold-deep);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.3;color:var(--red-deep);font-weight:800}
+.sub{font-family:var(--serif);font-size:14.5px;color:var(--gray);margin-top:7px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tab{font-size:12.5px;padding:4px 12px;border:1px solid var(--line);background:var(--white);color:var(--gray);border-radius:2px}
+.tab.on{background:var(--red);color:#fff;border-color:var(--red);font-weight:700}
+.demo-tag{margin-top:12px;font-size:12.5px;color:var(--red-deep);border-left:3px solid var(--gold);background:#FBF3E4;padding:8px 12px}
+h2{font-family:var(--serif);font-size:18px;color:var(--red-deep);font-weight:800;margin:30px 0 12px;padding-left:11px;border-left:4px solid var(--gold)}
+h2 .n{font-family:Georgia,serif;font-size:11.5px;color:var(--gold);letter-spacing:.12em;margin-left:8px;font-weight:400}
+h3{font-family:var(--serif);font-size:15px;color:var(--red-deep);margin:16px 0 8px}
+p{margin:0 0 9px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:3px;padding:15px 17px;margin-bottom:12px}
+.verdict{background:var(--red-deep);color:#FAF6EE;border-radius:4px;padding:16px 18px;margin:14px 0}
+.verdict .t{font-family:var(--serif);color:var(--gold);font-size:12.5px;letter-spacing:.16em;margin-bottom:7px}
+.verdict p{margin:0;font-size:14.5px;line-height:1.75}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.spec{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:11px 13px}
+.spec .k{color:var(--gray);font-size:12px;margin-bottom:3px}
+.spec .v{font-family:var(--serif);font-size:16px;color:var(--red-deep);font-weight:700}
+figure{background:var(--white);border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:0}
+figure img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+figcaption{padding:7px 10px;font-size:11.5px;color:var(--gray);line-height:1.5}
+figcaption b{color:var(--ink)}
+.item figure{max-width:460px}
+.badge{display:inline-block;font-family:var(--serif);font-size:12px;padding:2px 9px;border-radius:3px;letter-spacing:.04em;margin-right:8px}
+.b-p0{background:var(--red);color:#fff}
+.b-p1{background:var(--gold);color:#2B2620}
+.b-p2{background:#F3EADA;color:var(--gold-deep);border:1px solid var(--line)}
+.b-up{background:var(--red-deep);color:var(--gold)}
+.item{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:14px 16px;margin-bottom:12px}
+.item .head{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:7px}
+.item .name{font-weight:700;color:var(--red-deep);font-size:14.5px}
+.item .tc{font-family:Georgia,serif;color:var(--gold-deep);font-size:12.5px;margin-left:auto}
+.item .row{margin:0 0 6px;font-size:13.5px}
+.item .row .lk{color:var(--gray);font-size:12px}
+.audio-note{font-size:12.5px;color:var(--gray);border-left:3px solid var(--line);padding-left:9px;margin-top:6px}
+.steps{counter-reset:s;list-style:none}
+.steps li{counter-increment:s;position:relative;padding-left:32px;margin-bottom:10px;font-size:14px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;line-height:22px;text-align:center;font-family:var(--serif);font-size:12px;color:#fff;background:var(--red);border-radius:50%}
+.rail{border:1px solid var(--line);background:var(--white);border-radius:4px;padding:15px 17px;margin-bottom:12px}
+.rail .rt{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.rail .rn{font-family:var(--serif);font-size:15.5px;font-weight:800;color:var(--red-deep)}
+.rail .now{font-size:12.5px;color:var(--gold-deep);font-weight:700}
+.rail .rsub{font-size:12.5px;color:var(--gray);margin-bottom:10px}
+.bar{display:flex;gap:6px;margin:10px 0 8px}
+.seg{flex:1;position:relative;height:42px;border-radius:3px;background:#EFE7D6;overflow:hidden}
+.seg .fill{position:absolute;left:0;top:0;bottom:0}
+.s1 .fill{background:#D8CBB2}
+.s2 .fill{background:#D9B950}
+.s3 .fill{background:#C77C86}
+.seg .txt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2px 4px}
+.seg .lbl{font-size:12px;font-weight:700;color:var(--ink)}
+.seg .here{font-size:10px;font-weight:400;opacity:.85}
+.seg.todo .lbl,.seg.todo .here{color:var(--gray);opacity:.9}
+.rail .what{font-size:13px;color:var(--gray);line-height:1.65;margin-top:8px}
+.rail .nxt{font-size:13px;margin-top:6px;color:var(--ink)}
+.rail .nxt b{color:var(--red)}
+.evidence{font-size:12.5px;color:var(--gray);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.merit{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:14px 16px}
+.merit h4{font-family:var(--serif);font-size:14.5px;color:var(--red-deep);margin-bottom:6px}
+.merit p{font-size:13.5px;color:var(--gray);margin:0}
+.merit .evidence{margin-top:8px}
+.grip{border:1px solid var(--line);border-left:4px solid var(--gold);background:var(--white);padding:15px 17px;border-radius:3px}
+.grip ol{counter-reset:g;list-style:none;margin:0}
+.grip ol li{counter-increment:g;position:relative;padding-left:30px;margin-bottom:9px;font-size:14px}
+.grip ol li::before{content:counter(g);position:absolute;left:0;top:2px;font-family:var(--serif);font-size:12.5px;color:var(--gold-deep);border:1px solid var(--line);width:21px;height:21px;line-height:19px;text-align:center;border-radius:50%}
+.note{font-size:12.5px;color:var(--gray);margin-top:9px}
+footer{margin-top:36px;border-top:1px solid var(--line);padding-top:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px;color:var(--gray)}
+footer .lf{color:var(--red-deep);font-family:var(--serif);font-weight:700}
+.card .ct{font-family:var(--serif);font-weight:800;color:var(--red-deep);font-size:15px;margin-bottom:6px}
+.warn{border-left:4px solid var(--red);background:#FFF7F4;padding:13px 16px;font-size:14px;color:var(--red-deep);margin:14px 0;border-radius:3px}
+.shot-list{display:grid;grid-template-columns:1fr;gap:10px}
+.shot{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:13px 15px}
+.shot .st{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+.shot .sn{font-family:var(--serif);font-weight:800;color:var(--red-deep);font-size:14.5px}
+.shot .sm{font-size:11.5px;color:var(--gold-deep);border:1px solid var(--line);padding:1px 7px;border-radius:2px}
+.shot p{font-size:13.5px;color:var(--ink);margin:0}
+.shot .why{font-size:12.5px;color:var(--gray);margin-top:5px}
+.chat{display:flex;flex-direction:column;gap:12px;margin:12px 0}
+.bub{max-width:82%;padding:11px 14px;border-radius:4px;font-size:14px;line-height:1.7}
+.bub.coach{align-self:flex-start;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--red)}
+.bub.teacher{align-self:flex-end;background:#FBF3E4;border:1px solid var(--line)}
+.bub .who{font-size:11.5px;font-weight:700;margin-bottom:3px;letter-spacing:.05em}
+.bub.coach .who{color:var(--red)}
+.bub.teacher .who{color:var(--gold-deep)}
+.bub p{margin:0}
+.note-list{margin:0;padding-left:1.3em}
+.note-list li{margin-bottom:8px;font-size:14px}
+@media (max-width:700px){
+  .wrap{padding:20px 15px 46px}
+  h1{font-size:22px} h2{font-size:16.5px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .specs{grid-template-columns:repeat(2,1fr)}
+  .item .tc{margin-left:0;flex-basis:100%}
+  .spec .v{font-size:14px}
+  .seg{height:38px} .seg .lbl{font-size:11px} .seg .here{font-size:9px}
+  .bub{max-width:92%}
+}
+
+.frame-placeholder{border:1.5px dashed #9aa0a6;border-radius:8px;background:#f4f5f7;
+color:#6b5f52;padding:28px 16px;text-align:center;font-size:14px;line-height:1.7;margin:12px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">幼儿园视频教练 · 演示样例</div>
+  <h1>成长档案 · 演示样例</h1>
+  <div class="sub">攒够几条片子之后，教练把片子放一起看，给你的这条人评——现在在哪、长处是什么、下一步往哪走</div>
+  <div class="tabs">
+    <span class="tab on">成长档案 · 人评</span>
+  </div>
+  <div class="demo-tag">教学演示：虚构老师、虚构片子、AI 示意配图；不是真实评价，也不作任何老师之间的比较</div>
+</header>
+
+<div class="specs">
+  <div class="spec"><div class="k">老师</div><div class="v">老师（虚构）</div></div>
+  <div class="spec"><div class="k">班级</div><div class="v">中班</div></div>
+  <div class="spec"><div class="k">干活方式</div><div class="v">自己拍自己剪 · 半小时</div></div>
+  <div class="spec"><div class="k">依据片子</div><div class="v">3 条</div></div>
+</div>
+
+<h2>一 · 这份档案依据什么<span class="n">证据在先</span></h2>
+<div class="card">
+  <p>判断不靠印象，靠三条已经评过的片子；每条结论都挂到具体片子和时间码，一条片不足以定论，两条以上同向才写进来。档案不逐条贴帧，只给代表性长板配一张证据帧，跨片时间码在文字里列清。</p>
+</div>
+<div class="grid3">
+  <div class="card"><h3>户外观察活动 V1</h3><p>52 秒 · 家长群<br><span class="note">诊断报告已出，2 处待改、1 处已闭环</span></p></div>
+  <div class="card"><h3>班级环创布置 V1</h3><p>41 秒 · 家长群<br><span class="note">诊断报告已出，剪辑侧 3 处</span></p></div>
+  <div class="card"><h3>集体活动片段 V2</h3><p>1 分 08 秒 · 视频号<br><span class="note">复审结论：V1 的问题已改完</span></p></div>
+</div>
+
+<h2>二 · 三条线现在在哪<span class="n">台阶位置</span></h2>
+
+<div class="rail">
+  <div class="rt"><span class="rn">架构线</span><span class="now">L2 良好</span></div>
+  <div class="rsub">片子能不能说清一件事、有没有落点</div>
+  <div class="bar-wrap">
+    <div class="bar"><div class="seg s1"><div class="fill" style="width:100%"></div><div class="txt"><span class="lbl">L1 达标</span></div></div><div class="seg s2"><div class="fill" style="width:50%"></div><div class="txt"><span class="lbl">L2 良好</span><span class="here">现在在这 · 中段</span></div></div><div class="seg s3 todo"><div class="fill" style="width:0%"></div><div class="txt"><span class="lbl">L3 优秀</span><span class="here">下一站</span></div></div></div>
+  </div>
+  <div class="what"><b>已经做到：</b>三条片子都能说清一件具体的事，不再堆活动流水账；主线基本走得下来。</div>
+  <div class="nxt"><b>下一阶练什么：</b>开场三秒交代清楚 + 结尾有落点。这两处稳了，就能进 L3。</div>
+  <div class="evidence">证据：户外观察活动 V1 开场是空镜、结尾停在空草地；集体活动片段 V2 已改为孩子入画开场（复审判定已解决）。</div>
+</div>
+
+<div class="rail">
+  <div class="rt"><span class="rn">拍摄线</span><span class="now">接近 L3，待过关</span></div>
+  <div class="rsub">能不能拍到、拍清、拍出想要的瞬间</div>
+  <div class="bar-wrap">
+    <div class="bar"><div class="seg s1"><div class="fill" style="width:100%"></div><div class="txt"><span class="lbl">L1 达标</span></div></div><div class="seg s2"><div class="fill" style="width:100%"></div><div class="txt"><span class="lbl">L2 良好</span><span class="here">踩稳了</span></div></div><div class="seg s3"><div class="fill" style="width:20%"></div><div class="txt"><span class="lbl">L3 优秀</span><span class="here">下一站 · 差一步</span></div></div></div>
+  </div>
+  <div class="what"><b>已经做到：</b>主体清楚、画面稳，三条片子里没有一条甩镜或乱晃；孩子的真表情是你自己等出来的，不是喊出来的。</div>
+  <div class="nxt"><b>下一阶练什么：</b>按设计补景别——一条片子里安排一个低机位仰拍、一个手部或眼神特写，让画面有高低层次。攒到两条同向证据，拍摄线就进 L3。</div>
+  <div class="evidence">证据：户外观察活动 V1 的 0:08 举叶笑、0:23 抛叶子；集体活动片段 V2 的 0:31 孩子抱住老师——三处都是固定机位或靠稳拍，情绪自然。</div>
+</div>
+
+<div class="rail">
+  <div class="rt"><span class="rn">剪辑线</span><span class="now">L2 前段</span></div>
+  <div class="rsub">素材排得顺不顺、敢不敢删</div>
+  <div class="bar-wrap">
+    <div class="bar"><div class="seg s1"><div class="fill" style="width:100%"></div><div class="txt"><span class="lbl">L1 达标</span></div></div><div class="seg s2"><div class="fill" style="width:25%"></div><div class="txt"><span class="lbl">L2 良好</span><span class="here">现在在这 · 前段</span></div></div><div class="seg s3 todo"><div class="fill" style="width:0%"></div><div class="txt"><span class="lbl">L3 优秀</span><span class="here">下一站</span></div></div></div>
+  </div>
+  <div class="what"><b>已经做到：</b>动作接得上、排序不乱、声音版式基本统一，没有会影响发布的硬伤。</div>
+  <div class="nxt"><b>下一阶练什么：</b>取舍——同一场景最多留两条，敢删。这条稳了，节奏才起得来。</div>
+  <div class="evidence">证据：户外观察活动 V1 的 0:38—0:48 连排四个空镜和背影；班级环创布置 V1 里同一桌连排三条同景别。</div>
+</div>
+
+<h2>三 · 稳定下来的长处<span class="n">可以继续放大的</span></h2>
+<div class="grid2">
+  <div class="merit">
+    <h4>抓得住孩子真的表情</h4>
+    <p>你会等，不催、不喊"看镜头"，等到孩子自己笑起来的那一下。这是三条片子里最一致的一件事，也是最难教的。</p>
+    <div class="evidence">证据：户外观察活动 V1 的 0:08；集体活动片段 V2 的 0:31；班级环创布置 V1 的 0:12。</div>
+  </div>
+  <div class="merit">
+    <h4>画面稳、主体清楚</h4>
+    <p>固定机位用得住，人一眼能认出是谁，没有一条片子因为晃或糊发不出去。</p>
+    <div class="evidence">证据：三条片子均为主机位固定；班级环创布置 V1 全程手持仍可辨主体。</div>
+  </div>
+</div>
+<div class="grid2" style="margin-top:12px">
+  <figure>
+    <div class="frame-placeholder">示意帧未随源码仓分发；完整演示见技能包内 assets/demo-html。<br>帧说明：示意：代表作缩略</div>
+    <figcaption><b>代表作</b> · 集体活动片段 V2：人物可辨、构图规整<span class="n">｜AI 示意帧，非实拍</span></figcaption>
+  </figure>
+  <figure>
+    <div class="frame-placeholder">示意帧未随源码仓分发；完整演示见技能包内 assets/demo-html。<br>帧说明：示意：情绪特写</div>
+    <figcaption><b>长板证据</b> · 户外观察活动 V1 的 0:08：等出来的惊喜，不是被喊出来的<span class="n">｜AI 示意帧，非实拍</span></figcaption>
+  </figure>
+</div>
+
+<h2>四 · 还可以再往上走的地方<span class="n">不影响发片，慢慢来</span></h2>
+<div class="grid3">
+  <div class="card"><h3>剪辑习惯</h3><p>镜头舍不得删，一个场景容易连排三条以上；删掉一部分，节奏反而出来。</p></div>
+  <div class="card"><h3>取舍习惯</h3><p>习惯拿环境空镜开场。换成"人在做什么"的镜头开场，前三秒更抓人。</p></div>
+  <div class="card"><h3>拍摄习惯</h3><p>有时会站到逆光位，脸落在阴影里；换个站位就能解决，不用改设备。</p></div>
+</div>
+
+<h2>五 · 你的片子什么味道<span class="n">风格特点</span></h2>
+<div class="card">
+  <p>偏记录，耐心等真实反应；不爱用花字贴纸和特效，片子干净、声音以现场声为主。适合做"班里一天"这类有耐心的日常片，不适合快剪卡点。</p>
+</div>
+
+<h2>六 · 下一步先练什么<span class="n">一到两处，别贪多</span></h2>
+<div class="grip">
+  <ol>
+    <li><b>先练结尾落点：</b>每条片子留 2 秒有表情的镜头收尾。这一处练完，架构线就能往 L3 走。</li>
+    <li><b>再练剪辑取舍：</b>同一场景最多留两条，先删再排。剪辑线从 L2 前段往中段走。</li>
+    <li><b>拍摄线顺手带上：</b>下一条片子试着安排一个低机位仰拍，攒两条同向证据就进 L3。</li>
+    <li><b>怎么算过关：</b>连续两条片子结尾是人的脸或动作、同场景不超过两条——满足即过关，我们回看一次。</li>
+  </ol>
+</div>
+
+<p class="note">说明：本页为教学演示，老师姓名、班级、片名、时间码均为虚构；配图是 AI 示意，不是真实拍摄画面。真实档案里写的是她自己的片子和自己的时间码，且只和她自己上一版比，不和其他老师比。</p>
+
+<footer>
+  <span class="lf">幼儿园视频教练</span>
+  <span>成长档案样例 · 演示用</span>
+</footer>
+
+</div>
+</body>
+</html>
