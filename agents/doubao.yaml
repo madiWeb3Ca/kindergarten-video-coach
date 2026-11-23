@@ -1,0 +1,7 @@
+interface:
+  display_name: "幼儿视频教练"
+  short_description: "幼儿园老师的视频拍摄与剪辑 AI 教练：交片子就诊断，问怎么剪就给步骤，首次自动完成项目初始化"
+  default_prompt: "使用 $kindergarten-video-coach 帮我看看这条片子……"
+
+policy:
+  allow_implicit_invocation: true
