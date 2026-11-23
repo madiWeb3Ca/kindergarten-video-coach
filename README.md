@@ -33,7 +33,7 @@
 | `scripts/check_output.py` | 交付前校验：HTML 自包含、截帧落盘、禁用措辞／占位符／真名、清单核对 |
 | `scripts/check_archive.py` | 档案表完整性自检：在不在、能否打开、表头是否相符、是否落在临时目录 |
 | `scripts/report_render.py` | 单条诊断报告渲染器：数据 JSON／模板／帧清单分离，按名单条增量渲染，缺字段降级 |
-| `assets/demo-html/` | 四份演示样例：拍前清单、剪前自检、成片诊断、成长档案（虚构演示） |
+| `assets/demo-html/` | 四份演示样例骨架：拍前清单、剪前自检、成片诊断、成长档案（虚构演示；源码仓已剥离内嵌示意帧，完整带帧版本随技能包分发） |
 | `CHANGELOG.md` / `LICENSE.txt` | 版本记录；CC-BY-NC-SA-4.0 |
 
 ## 环境依赖
