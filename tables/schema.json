@@ -1,0 +1,156 @@
+{
+  "version": "1.1",
+  "note": "10 张底座表的字段骨架，与 references/init-prompt.md 第 3 步逐表对齐（以提示词为唯一正本，本文件只是它的机器可读副本）。kind 取值：text / longtext / select / number / date / attachment。init 时按此建表，字段名不得改写，仅可追加新字段；不许改表名、不许合并表。在线表首字段必须为文本类：纠错记录、进阶记录、禁忌清单、剪映库头与索引四张表首字段原为日期/单选，建表时把首个文本字段提为主字段，原字段顺序后移、名称不改。",
+  "tables": [
+    {
+      "key": "learner_profile",
+      "name": "学员档案",
+      "grain": "一位老师一行",
+      "fields": [
+        { "name": "称呼", "kind": "text", "note": "以后就这么叫，必填" },
+        { "name": "班级", "kind": "text" },
+        { "name": "孩子数量", "kind": "number" },
+        { "name": "分工", "kind": "select", "options": ["自己拍自己剪", "剪别人拍的", "两样都做", "待补充"], "note": "决定重点教拍摄还是剪辑" },
+        { "name": "时间预算", "kind": "select", "options": ["十分钟内", "半小时", "一小时以上", "待补充"], "note": "决定给一键成片还是精剪方案" },
+        { "name": "陪跑方向", "kind": "select", "options": ["拍摄陪跑", "剪辑陪跑", "双线", "待补充"], "note": "注明是自选还是推断" },
+        { "name": "拍摄设备", "kind": "text" },
+        { "name": "稳定器材", "kind": "text", "note": "三脚架／云台／无" },
+        { "name": "剪映端与版本", "kind": "text" },
+        { "name": "剪辑熟练度", "kind": "select", "options": ["新手", "自己摸索过", "常剪", "待补充"] },
+        { "name": "单条剪辑时长", "kind": "text", "note": "她自己的原话估计" },
+        { "name": "最想解决的一件事", "kind": "longtext" },
+        { "name": "禁忌做法", "kind": "longtext", "note": "她明确不想改的地方" },
+        { "name": "待补充", "kind": "longtext" },
+        { "name": "当前台阶", "kind": "select", "options": ["L1", "L2", "L3", "未评定"], "note": "能力画像区块｜建档时留空，默认未评定，随片子积累更新" },
+        { "name": "稳定优点", "kind": "longtext", "note": "能力画像区块｜有片子证据的具体做法，建档时留空" },
+        { "name": "可再提升点", "kind": "longtext", "note": "能力画像区块｜温和措辞，禁缺点/短板一类词，建档时留空" },
+        { "name": "风格特点", "kind": "longtext", "note": "能力画像区块｜偏记录还是偏活泼，不贴标签，建档时留空" },
+        { "name": "表达取向", "kind": "longtext", "note": "能力画像区块｜惯用开场、偏好镜头、切入方式，迹象够两条才记，建档时留空" },
+        { "name": "下一阶段培养重点", "kind": "longtext", "note": "能力画像区块｜建档时留空" },
+        { "name": "画像更新日期", "kind": "date", "note": "能力画像区块｜建档时留空" },
+        { "name": "建档时间", "kind": "date" },
+        { "name": "备注", "kind": "longtext" }
+      ]
+    },
+    {
+      "key": "standards",
+      "name": "标准条目库",
+      "grain": "一条标准一行（应 47 条）",
+      "fields": [
+        { "name": "编号", "kind": "text", "note": "S1-01…S3-17，主键" },
+        { "name": "条文", "kind": "longtext", "note": "照录，不改写、不合并、不省出处局限" },
+        { "name": "层级", "kind": "select", "options": ["层1", "层2", "层3"] },
+        { "name": "出处", "kind": "text" },
+        { "name": "局限", "kind": "longtext" },
+        { "name": "状态", "kind": "select", "options": ["生效", "待校准", "已归档"], "note": "层3 一律待校准；层1 层2 保留原文状态" }
+      ]
+    },
+    {
+      "key": "capcut",
+      "name": "剪映知识包",
+      "grain": "一条操作一行（应 44 条）",
+      "fields": [
+        { "name": "编号", "kind": "text", "note": "J01…J44，主键" },
+        { "name": "条目", "kind": "longtext" },
+        { "name": "适用端", "kind": "select", "options": ["共享", "APP", "PC"] },
+        { "name": "分层", "kind": "select", "options": ["判据层", "操作底图层"], "note": "J01—J20 判据层，J21—J44 操作底图层" },
+        { "name": "操作路径", "kind": "longtext", "note": "菜单名以她实机为准" },
+        { "name": "参数建议", "kind": "longtext" },
+        { "name": "多源一致度", "kind": "select", "options": ["一致", "部分一致", "单一来源", "冲突"] },
+        { "name": "对园所片子的适用性", "kind": "text" },
+        { "name": "核验状态", "kind": "select", "options": ["已核验", "待核验"], "note": "不许把待核验改写为可用" }
+      ]
+    },
+    {
+      "key": "anchor_breakdown",
+      "name": "锚点拆解库",
+      "grain": "一条锚点片一行（她自评觉得不错的片子）",
+      "fields": [
+        { "name": "片子来源", "kind": "text", "note": "日期_题材_版本，或相对路径" },
+        { "name": "时长", "kind": "text" },
+        { "name": "效果目标", "kind": "text" },
+        { "name": "机制拆解", "kind": "longtext", "note": "它好在哪一步，拆到可复现的程度" },
+        { "name": "剪映复现步骤", "kind": "longtext" },
+        { "name": "翻车点", "kind": "longtext", "note": "照做最容易错在哪" },
+        { "name": "自评理由", "kind": "longtext", "note": "她自己为什么觉得好" }
+      ]
+    },
+    {
+      "key": "diagnosis_cases",
+      "name": "诊断案例库",
+      "grain": "一个活动一行，版本挂同一条（V1→V2→V3 不新建行）",
+      "fields": [
+        { "name": "片子标识", "kind": "text", "note": "活动＋日期，主键" },
+        { "name": "当前版本", "kind": "select", "options": ["V1", "V2", "V3"] },
+        { "name": "交片日期", "kind": "date" },
+        { "name": "分辨率与时长", "kind": "text" },
+        { "name": "观察事实", "kind": "longtext", "note": "时间码＋画面＋对应截帧编号" },
+        { "name": "截帧附件", "kind": "attachment", "note": "附件优先；不支持附件时落盘并在「截帧路径」写相对路径" },
+        { "name": "截帧路径", "kind": "text", "note": "降级落盘时的项目内相对路径，多个用换行" },
+        { "name": "落盘校验", "kind": "select", "options": ["已校验", "未校验"], "note": "写盘后回读一次才可标已校验" },
+        { "name": "对照标准编号", "kind": "text", "note": "S1-xx／S2-xx／Jxx 逗号分隔" },
+        { "name": "建议", "kind": "longtext", "note": "每条挂状态标签：必改（P0）／建议改（P1）／加分项（P2）；一条建议只挂一档" },
+        { "name": "待确认", "kind": "longtext", "note": "独立成行、单独成块，不并入建议栏；写清缺什么、支撑哪句判断；补齐前不当作已成立结论" },
+        { "name": "复审结果", "kind": "longtext" },
+        { "name": "状态", "kind": "select", "options": ["待评", "已评", "已闭环"] },
+        { "name": "家长群反应", "kind": "longtext" }
+      ]
+    },
+    {
+      "key": "corrections",
+      "name": "纠错记录",
+      "grain": "一次纠正一行",
+      "fields": [
+        { "name": "日期", "kind": "date" },
+        { "name": "原判断", "kind": "longtext" },
+        { "name": "她指出哪里不对", "kind": "longtext" },
+        { "name": "修正后口径", "kind": "longtext" },
+        { "name": "影响范围", "kind": "text", "note": "只影响这一条，还是以后都不这么判" }
+      ]
+    },
+    {
+      "key": "progress_log",
+      "name": "进阶记录",
+      "grain": "一次台阶变化或能力变化一行（能力画像的更新日志）",
+      "fields": [
+        { "name": "日期", "kind": "date" },
+        { "name": "本次能说清的问题", "kind": "longtext", "note": "她自己讲明白了什么，比改好一条片子更重要" },
+        { "name": "改动后效果", "kind": "longtext" },
+        { "name": "下一步练什么", "kind": "text" }
+      ]
+    },
+    {
+      "key": "taboos",
+      "name": "禁忌清单",
+      "grain": "一条禁忌一行",
+      "fields": [
+        { "name": "类别", "kind": "select", "options": ["老师明确禁忌", "剪映不适用慎用"] },
+        { "name": "条目", "kind": "longtext" },
+        { "name": "原因", "kind": "longtext" },
+        { "name": "来源", "kind": "text" }
+      ]
+    },
+    {
+      "key": "pending_verify",
+      "name": "待核验清单",
+      "grain": "一项待核验一行（应 11 项）",
+      "fields": [
+        { "name": "编号", "kind": "text" },
+        { "name": "涉及条目", "kind": "text", "note": "Jxx" },
+        { "name": "待核验事项", "kind": "longtext", "note": "用白话写清点哪儿看什么" },
+        { "name": "核验结果", "kind": "longtext" },
+        { "name": "核验日期", "kind": "date" }
+      ]
+    },
+    {
+      "key": "capcut_head",
+      "name": "剪映库头与索引",
+      "grain": "一条总规矩或一条官方索引一行，只作目录引用不展开",
+      "fields": [
+        { "name": "类型", "kind": "select", "options": ["总规矩", "官方课程索引"] },
+        { "name": "名称", "kind": "text" },
+        { "name": "内容或链接", "kind": "longtext" }
+      ]
+    }
+  ]
+}
