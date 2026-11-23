@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>剪前自检样例（演示）· 视频内容创作教练</title>
+<style>
+:root{
+  --red:#4A5D6A; --red-deep:#33424D; --gold:#A99B7E; --gold-deep:#7A6E57;
+  --paper:#FAF6EE; --ink:#2B2620; --gray:#6B5F52; --line:#E4D8BE; --white:#fff;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:"Microsoft YaHei","PingFang SC","Noto Sans SC",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:32px 24px 64px}
+header{border-bottom:2px solid var(--red);padding-bottom:16px;margin-bottom:22px}
+.brand{font-size:12.5px;letter-spacing:.18em;color:var(--gold-deep);margin-bottom:10px}
+h1{font-family:var(--serif);font-size:28px;line-height:1.3;color:var(--red-deep);font-weight:800}
+.sub{font-family:var(--serif);font-size:14.5px;color:var(--gray);margin-top:7px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tab{font-size:12.5px;padding:4px 12px;border:1px solid var(--line);background:var(--white);color:var(--gray);border-radius:2px}
+.tab.on{background:var(--red);color:#fff;border-color:var(--red);font-weight:700}
+.demo-tag{margin-top:12px;font-size:12.5px;color:var(--red-deep);border-left:3px solid var(--gold);background:#FBF3E4;padding:8px 12px}
+h2{font-family:var(--serif);font-size:18px;color:var(--red-deep);font-weight:800;margin:30px 0 12px;padding-left:11px;border-left:4px solid var(--gold)}
+h2 .n{font-family:Georgia,serif;font-size:11.5px;color:var(--gold);letter-spacing:.12em;margin-left:8px;font-weight:400}
+h3{font-family:var(--serif);font-size:15px;color:var(--red-deep);margin:16px 0 8px}
+p{margin:0 0 9px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:3px;padding:15px 17px;margin-bottom:12px}
+.verdict{background:var(--red-deep);color:#FAF6EE;border-radius:4px;padding:16px 18px;margin:14px 0}
+.verdict .t{font-family:var(--serif);color:var(--gold);font-size:12.5px;letter-spacing:.16em;margin-bottom:7px}
+.verdict p{margin:0;font-size:14.5px;line-height:1.75}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.spec{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:11px 13px}
+.spec .k{color:var(--gray);font-size:12px;margin-bottom:3px}
+.spec .v{font-family:var(--serif);font-size:16px;color:var(--red-deep);font-weight:700}
+figure{background:var(--white);border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:0}
+figure img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+figcaption{padding:7px 10px;font-size:11.5px;color:var(--gray);line-height:1.5}
+figcaption b{color:var(--ink)}
+.item figure{max-width:460px}
+.badge{display:inline-block;font-family:var(--serif);font-size:12px;padding:2px 9px;border-radius:3px;letter-spacing:.04em;margin-right:8px}
+.b-p0{background:var(--red);color:#fff}
+.b-p1{background:var(--gold);color:#2B2620}
+.b-p2{background:#F3EADA;color:var(--gold-deep);border:1px solid var(--line)}
+.b-up{background:var(--red-deep);color:var(--gold)}
+.item{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:14px 16px;margin-bottom:12px}
+.item .head{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:7px}
+.item .name{font-weight:700;color:var(--red-deep);font-size:14.5px}
+.item .tc{font-family:Georgia,serif;color:var(--gold-deep);font-size:12.5px;margin-left:auto}
+.item .row{margin:0 0 6px;font-size:13.5px}
+.item .row .lk{color:var(--gray);font-size:12px}
+.audio-note{font-size:12.5px;color:var(--gray);border-left:3px solid var(--line);padding-left:9px;margin-top:6px}
+.steps{counter-reset:s;list-style:none}
+.steps li{counter-increment:s;position:relative;padding-left:32px;margin-bottom:10px;font-size:14px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:22px;height:22px;line-height:22px;text-align:center;font-family:var(--serif);font-size:12px;color:#fff;background:var(--red);border-radius:50%}
+.rail{border:1px solid var(--line);background:var(--white);border-radius:4px;padding:15px 17px;margin-bottom:12px}
+.rail .rt{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.rail .rn{font-family:var(--serif);font-size:15.5px;font-weight:800;color:var(--red-deep)}
+.rail .now{font-size:12.5px;color:var(--gold-deep);font-weight:700}
+.rail .rsub{font-size:12.5px;color:var(--gray);margin-bottom:10px}
+.bar{display:flex;gap:6px;margin:10px 0 8px}
+.seg{flex:1;position:relative;height:42px;border-radius:3px;background:#EFE7D6;overflow:hidden}
+.seg .fill{position:absolute;left:0;top:0;bottom:0}
+.s1 .fill{background:#D8CBB2}
+.s2 .fill{background:#D9B950}
+.s3 .fill{background:#C77C86}
+.seg .txt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2px 4px}
+.seg .lbl{font-size:12px;font-weight:700;color:var(--ink)}
+.seg .here{font-size:10px;font-weight:400;opacity:.85}
+.seg.todo .lbl,.seg.todo .here{color:var(--gray);opacity:.9}
+.rail .what{font-size:13px;color:var(--gray);line-height:1.65;margin-top:8px}
+.rail .nxt{font-size:13px;margin-top:6px;color:var(--ink)}
+.rail .nxt b{color:var(--red)}
+.evidence{font-size:12.5px;color:var(--gray);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.merit{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:14px 16px}
+.merit h4{font-family:var(--serif);font-size:14.5px;color:var(--red-deep);margin-bottom:6px}
+.merit p{font-size:13.5px;color:var(--gray);margin:0}
+.merit .evidence{margin-top:8px}
+.grip{border:1px solid var(--line);border-left:4px solid var(--gold);background:var(--white);padding:15px 17px;border-radius:3px}
+.grip ol{counter-reset:g;list-style:none;margin:0}
+.grip ol li{counter-increment:g;position:relative;padding-left:30px;margin-bottom:9px;font-size:14px}
+.grip ol li::before{content:counter(g);position:absolute;left:0;top:2px;font-family:var(--serif);font-size:12.5px;color:var(--gold-deep);border:1px solid var(--line);width:21px;height:21px;line-height:19px;text-align:center;border-radius:50%}
+.note{font-size:12.5px;color:var(--gray);margin-top:9px}
+footer{margin-top:36px;border-top:1px solid var(--line);padding-top:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px;color:var(--gray)}
+footer .lf{color:var(--red-deep);font-family:var(--serif);font-weight:700}
+.card .ct{font-family:var(--serif);font-weight:800;color:var(--red-deep);font-size:15px;margin-bottom:6px}
+.warn{border-left:4px solid var(--red);background:#FFF7F4;padding:13px 16px;font-size:14px;color:var(--red-deep);margin:14px 0;border-radius:3px}
+.shot-list{display:grid;grid-template-columns:1fr;gap:10px}
+.shot{border:1px solid var(--line);background:var(--white);border-radius:3px;padding:13px 15px}
+.shot .st{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+.shot .sn{font-family:var(--serif);font-weight:800;color:var(--red-deep);font-size:14.5px}
+.shot .sm{font-size:11.5px;color:var(--gold-deep);border:1px solid var(--line);padding:1px 7px;border-radius:2px}
+.shot p{font-size:13.5px;color:var(--ink);margin:0}
+.shot .why{font-size:12.5px;color:var(--gray);margin-top:5px}
+.chat{display:flex;flex-direction:column;gap:12px;margin:12px 0}
+.bub{max-width:82%;padding:11px 14px;border-radius:4px;font-size:14px;line-height:1.7}
+.bub.coach{align-self:flex-start;background:var(--white);border:1px solid var(--line);border-left:3px solid var(--red)}
+.bub.teacher{align-self:flex-end;background:#FBF3E4;border:1px solid var(--line)}
+.bub .who{font-size:11.5px;font-weight:700;margin-bottom:3px;letter-spacing:.05em}
+.bub.coach .who{color:var(--red)}
+.bub.teacher .who{color:var(--gold-deep)}
+.bub p{margin:0}
+.note-list{margin:0;padding-left:1.3em}
+.note-list li{margin-bottom:8px;font-size:14px}
+@media (max-width:700px){
+  .wrap{padding:20px 15px 46px}
+  h1{font-size:22px} h2{font-size:16.5px}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .specs{grid-template-columns:repeat(2,1fr)}
+  .item .tc{margin-left:0;flex-basis:100%}
+  .spec .v{font-size:14px}
+  .seg{height:38px} .seg .lbl{font-size:11px} .seg .here{font-size:9px}
+  .bub{max-width:92%}
+}
+
+.frame-placeholder{border:1.5px dashed #9aa0a6;border-radius:8px;background:#f4f5f7;
+color:#6b5f52;padding:28px 16px;text-align:center;font-size:14px;line-height:1.7;margin:12px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">幼儿园视频教练 · 演示样例</div>
+  <h1>剪前自检 · 演示样例</h1>
+  <div class="sub">素材回来、开剪之前的轻量问答：先理清思路再剪，不全量读素材、不出诊断报告</div>
+  <div class="tabs">
+    <span class="tab">拍前清单</span>
+    <span class="tab on">剪前自检</span>
+    <span class="tab">诊断报告</span>
+    <span class="tab">复审结论</span>
+  </div>
+  <div class="demo-tag">教学演示：虚构素材、虚构老师；这是开剪前的事前注意，不是对成片的诊断</div>
+</header>
+
+<div class="specs">
+  <div class="spec"><div class="k">素材状态</div><div class="v">已回盘 · 未开剪</div></div>
+  <div class="spec"><div class="k">活动</div><div class="v">户外自然观察</div></div>
+  <div class="spec"><div class="k">渠道 · 时长</div><div class="v">家长群 · 40—60 秒</div></div>
+  <div class="spec"><div class="k">出片方式</div><div class="v">模板手改</div></div>
+</div>
+
+<h2>一 · 开剪前的问答</h2>
+<div class="chat">
+  <div class="bub coach"><div class="who">教练</div><p>这条发哪个渠道、大概多长？</p></div>
+  <div class="bub teacher"><div class="who">老师</div><p>发家长群，40 到 60 秒。</p></div>
+  <div class="bub coach"><div class="who">教练</div><p>手上有哪几类镜头？缺哪一类？</p></div>
+  <div class="bub teacher"><div class="who">老师</div><p>有孩子跑、有捡叶子，缺一个能认出是谁的正面表情。</p></div>
+  <div class="bub coach"><div class="who">教练</div><p>哪段你拿不准怎么放？</p></div>
+  <div class="bub teacher"><div class="who">老师</div><p>抛落叶那段热闹，不知道放开头还是中间。</p></div>
+  <div class="bub coach"><div class="who">教练</div><p>打算怎么剪？</p></div>
+  <div class="bub teacher"><div class="who">老师</div><p>套用现成模板，手改一下顺序和字幕。</p></div>
+</div>
+
+<h2>二 · 事前注意<span class="n">开剪前先留意</span></h2>
+<div class="shot-list">
+  <div class="shot">
+    <div class="st"><span class="sn">开场交代清楚</span></div>
+    <p>前三秒先让人看出在哪、谁、在做什么，别拿空草地开场。</p>
+  </div>
+  <div class="shot">
+    <div class="st"><span class="sn">留一张记得住的脸</span></div>
+    <p>正面表情镜头放近开场或结尾；目前缺这类，剪的时候先标出哪里要补拍。</p>
+  </div>
+  <div class="shot">
+    <div class="st"><span class="sn">热闹段放中段</span></div>
+    <p>抛落叶那段做中段高潮，不压在开场；开场先交代环境和人。</p>
+  </div>
+  <div class="shot">
+    <div class="st"><span class="sn">同场景先挑两条</span></div>
+    <p>同一场景的镜头先挑两条，别舍不得删；多余的先放一边，不进主片。</p>
+  </div>
+</div>
+
+<h2>三 · 避坑<span class="n">剪的时候顺手留意</span></h2>
+<ul class="note-list">
+  <li>树荫段和阳光下段接在一起，注意亮度别跳；不要逐段套不同滤镜。</li>
+  <li>现场声留一段，别全程音乐盖过人声。</li>
+</ul>
+
+<div class="card">
+  <div class="ct">存疑待补</div>
+  <p>哪个镜头看不清、拿不准，到时候单发一张照片或一小段片段给教练对照；这里不提前全量读素材、不出诊断报告。</p>
+</div>
+
+<figure style="max-width:460px;margin-top:12px">
+  <div class="frame-placeholder">示意帧未随源码仓分发；完整演示见技能包内 assets/demo-html。<br>帧说明：示意帧：专注的表情</div>
+  <figcaption><b>缺的这类镜头</b> · 抬头专注的正面表情，是开剪前先标出的补拍方向<span class="n">｜AI 示意帧，非实拍</span></figcaption>
+</figure>
+
+<p class="note">说明：本页为教学演示，素材、老师均为虚构；配图是 AI 示意，不是真实画面。真实自检按她手上的素材和回答来。</p>
+
+<footer>
+  <span class="lf">幼儿园视频教练</span>
+  <span>剪前自检样例 · 演示用</span>
+</footer>
+
+</div>
+</body>
+</html>
