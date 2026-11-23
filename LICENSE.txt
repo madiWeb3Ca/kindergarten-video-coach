@@ -1,0 +1,15 @@
+Copyright (c) 2026 kindergarten-video-coach contributors
+
+本作品采用 知识共享 署名-非商业性使用-相同方式共享 4.0 国际许可协议
+（Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International, CC-BY-NC-SA-4.0）进行许可。
+
+许可要点（人类可读摘要，不替代法律文本）：
+
+- 署名（BY）：使用、复制、修改本作品时须注明原作者与来源。
+- 非商业性使用（NC）：不得将本作品用于商业目的。
+- 相同方式共享（SA）：基于本作品修改、衍生的内容，须以相同许可协议发布。
+
+完整法律文本见：https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+许可标识页：https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-Hans
+
+与 SKILL.md frontmatter 中 license 字段（CC-BY-NC-SA-4.0）保持一致。
